@@ -59,7 +59,7 @@ export default class Dropdown extends PureComponent {
     animationDuration: 225,
 
     fontSize: 16,
-
+    font: {},
     textColor: 'rgba(0, 0, 0, .87)',
     itemColor: 'rgba(0, 0, 0, .54)',
     baseColor: 'rgba(0, 0, 0, .38)',
@@ -134,7 +134,7 @@ export default class Dropdown extends PureComponent {
     baseColor: PropTypes.string,
 
     itemTextStyle: Text.propTypes.style,
-
+    font: Text.propTypes.style,
     itemCount: PropTypes.number,
     itemPadding: PropTypes.number,
 
@@ -482,6 +482,7 @@ export default class Dropdown extends PureComponent {
       labelExtractor,
       dropdownOffset,
       renderAccessory = this.renderAccessory,
+      font
     } = this.props;
 
     let index = this.selectedIndex();
@@ -502,18 +503,17 @@ export default class Dropdown extends PureComponent {
     title = null == title || 'string' === typeof title?
       title:
       String(title);
-
     return (
       <TextField
         label=''
         labelHeight={dropdownOffset.top - Platform.select({ ios: 1, android: 2 })}
 
         {...props}
-
         value={title}
         editable={false}
         onChangeText={undefined}
         renderAccessory={renderAccessory}
+        style={font}
       />
     );
   }
